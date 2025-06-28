@@ -1,10 +1,12 @@
 'use strict';
 
 function transformStateWithClones(state, actions) {
-  const cloneObject = { ...state };
+  let cloneObject = { ...state };
   const result = [];
 
   for (const action of actions) {
+    cloneObject = { ...cloneObject };
+
     if (action.type === 'addProperties') {
       Object.assign(cloneObject, action.extraData);
       result.push({ ...cloneObject });
